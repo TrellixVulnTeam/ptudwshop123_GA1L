@@ -1,10 +1,10 @@
 {
-  "name": "da",
+  "name": "ptudwshop123",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon --inspect src/index.js",
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "kaballl",

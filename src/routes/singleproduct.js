@@ -5,6 +5,8 @@ const singleproductController=require('../app/controllers/singleproductControlle
 
 
 router.get('/:slug',singleproductController.index)
+router.post('/:slug/store',singleproductController.store)
+router.get('/:slug/add',singleproductController.add)
 
 
 

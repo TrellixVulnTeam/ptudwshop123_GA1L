@@ -13,6 +13,9 @@ class CartController{
     index(req,res,next){
         {
             res.render('cart')
+           
+            
+
         }
 
 

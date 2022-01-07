@@ -7,7 +7,7 @@ const confirmationRouter=require('./confirmation')
 const contactRouter=require('./contact')
 const homeRouter=require('./home')
 const loginRouter=require('./login')
-const trackingRouter=require('./tracking')
+
 
 function route(app){
     app.use('/product',productRouter )
@@ -19,7 +19,7 @@ function route(app){
     app.use('/contact',contactRouter)
     app.use('/home',homeRouter)
     app.use('/login',loginRouter)
-    app.use('/tracking',trackingRouter)
+    
     
       
 }

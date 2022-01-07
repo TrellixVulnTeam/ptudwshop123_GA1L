@@ -29,7 +29,8 @@ class ProductController{
             .lean()
             .then(products=>{
                 
-                Product.countDocuments({}).then((total)=>{
+                Product.countDocuments({})
+                .then((total)=>{
                     var tongsoPage=Math.ceil(total/PAGE_SIZE)
                     var page_items=[]
                     for(let i=1;i<=tongsoPage;i++)

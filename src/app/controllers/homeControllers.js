@@ -9,10 +9,24 @@ class HomeController{
     
     
 
-  //[GET]/singleproduct/:slug
+ 
     index(req,res,next){
         {
-            res.render('index')
+          Product.find({})
+          .skip()
+          .limit(8)
+          .lean()
+          .then(product=>{
+            Product.find({})
+            .skip(8)
+            .limit(8)
+            .lean()
+            .then(products=>{
+              res.render('home',{product,products})
+            })
+          })
+          .catch(next)
+           
         }
 
 

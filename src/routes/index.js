@@ -7,7 +7,8 @@ const confirmationRouter=require('./confirmation')
 const contactRouter=require('./contact')
 const homeRouter=require('./home')
 const loginRouter=require('./login')
-
+const searchRouter=require('./search')
+const registrationRouter=require('./registration')
 
 function route(app){
     app.use('/product',productRouter )
@@ -19,7 +20,8 @@ function route(app){
     app.use('/contact',contactRouter)
     app.use('/home',homeRouter)
     app.use('/login',loginRouter)
-    
+    app.use('/search',searchRouter)
+    app.use('/registration',registrationRouter)
     
       
 }

@@ -13,7 +13,10 @@ const Product = new Schema({
   _price:{type:String},
   _detail:{type:String},
   _v:{type:String},
-  _procedure:{type:String}
+  _procedure:{type:String},
+  _booth:{type:Boolean},
+  
+
 
 
 

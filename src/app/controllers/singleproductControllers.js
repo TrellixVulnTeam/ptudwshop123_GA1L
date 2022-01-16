@@ -124,8 +124,8 @@ class SingleProductController{
                
 
                 
-                
-                res.json(req.session.data)
+                var message="Thêm vào giỏ hàng thành công"
+                res.redirect('/cart')
 
             })
         }

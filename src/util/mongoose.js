@@ -106,6 +106,19 @@ module.exports={
         }
         return true
 
-    }
+    },
+    notExistProcedure:function(procedure,result)
+    {
+        for(let i=0;i<result.length;i++)
+        {
+            if(procedure==result[i])
+            {
+                return false
+            }
+        }
+        return true
+
+    },
+    
     
 }

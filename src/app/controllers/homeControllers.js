@@ -1,6 +1,6 @@
 
 const Product=require('../models/Product')
-const{mongooseToObject}=require('../../util/mongoose')
+const{mongooseToObject, allProcedure, notExistProcedure}=require('../../util/mongoose')
 
 
 
@@ -14,17 +14,41 @@ class HomeController{
         {
           Product.find({})
           .skip()
-          .limit(8)
+          .limit()
           .lean()
-          .then(product=>{
-            Product.find({})
-            .skip(8)
-            .limit(8)
-            .lean()
-            .then(products=>{
-              res.render('home',{product,products})
+          .then(products=>{
+            var procedure=[]
+            var result=[]
+            for(let i=0;i<products.length;i++)
+            {
+              if(notExistProcedure(products[i]._procedure,procedure))
+              {
+                procedure.push(products[i]._procedure)
+              }
+            }
+            for(let i=0;i<procedure.length;i++)
+            {
+              Product.find({_procedure:procedure[i],_booth:true})
+              .limit(8)
+              .lean()
+              .then(data=>{
+                const item={
+                  data,
+                  cate:procedure[i]
+                  
+                  
+                }
+                result.push(item)
+                if(i==procedure.length-1)
+                {
+                  res.render('home',{result})
+                }
+
+              })
+            }
+            
             })
-          })
+       
           .catch(next)
            
         }

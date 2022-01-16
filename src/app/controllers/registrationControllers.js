@@ -32,6 +32,7 @@ class RegistrationController{
                 var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
                 var string_length = 6;
                 var randomstring = '';
+                var message;
                 for (var i=0; i<string_length; i++) {
                     var rnum = Math.floor(Math.random() * chars.length);
                     randomstring += chars.substring(rnum,rnum+1);
@@ -53,7 +54,8 @@ class RegistrationController{
                 transporter.sendMail(mailOptions,function(err,data){
                     if(err){
                         console.log('error occurs:',err)
-                        res.json('Email bạn nhập không đúng')
+                        message="Email bạn nhập không đúng"
+                        res.render('registration',{message})
         
                     }
                     else{
@@ -65,7 +67,10 @@ class RegistrationController{
                         formData._lock=false
                         const customer=new Customer(formData)
                         customer.save()
-                        .then(()=>res.json('Đăng ký thành công vui lòng đăng nhập email của bạn để lấy mật khẩu'))
+                        .then(()=>{
+                            message="Đăng ký thành công vui lòng đăng nhập email của bạn để lấy mật khẩu"
+                            res.render('registration',{message})
+                        })
                         .catch(error=>{
 
                          })
@@ -76,8 +81,11 @@ class RegistrationController{
 
             }
             else{
-                res.json('tên tài khoản hoặc email đã đăng ký ')
+                message="Tên tài khoản hoặc email đã đăng ký"
+                res.render('registration',{message})
             }
+           
+            
 
         })
         

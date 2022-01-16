@@ -9,8 +9,7 @@
 							<div class="col-lg-5 col-md-6">
 								<div class="banner-content">
 									<h1>PTUDW <br>Shop!</h1>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+									
 									
 								</div>
 							</div>
@@ -23,8 +22,7 @@
 							<div class="col-lg-5">
 								<div class="banner-content">
 									<h1>PTUDW <br>Shop!</h1>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+									
 									
 								</div>
 							</div>
@@ -88,20 +86,22 @@
 	</section>
 	<!-- end features Area -->
 <!-- start product Area -->
+	
 	<section class="owl-carousel active-product-area section_gap">
 		<!-- single product slide -->
+		{{#each result}}
 		<div class="single-product-slider">
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-6 text-center">
 						<div class="section-title">
-							<h1>Some Products</h1>
+							<h1>Gian hàng {{this.cate}}</h1>
 							
 						</div>
 					</div>
 				</div>
 				<div class="row">
-					{{#each product}}
+					{{#each this.data}}
 					<!-- single product -->
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
@@ -123,43 +123,9 @@
 				</div>
 			</div>
 		</div>
-		<!-- single product slide -->
-		<div class="single-product-slider">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-lg-6 text-center">
-						<div class="section-title">
-							<h1>Some Products</h1>
-							
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					{{#each products}}
-					<!-- single product -->
-					<div class="col-lg-3 col-md-6">
-						<div class="single-product">
-							<a href="/singleproduct/{{this._slug}}">
-								<img class="img-fluid" src="{{this._img}}">
-							</a>
-							
-							<div class="product-details">
-								<h6>{{this._detail}}</h6>
-								<div class="price">
-									<h6>{{this._price}}</h6>
-									
-								</div>
-								
-							</div>
-						</div>
-					</div>
-					{{/each}}
-					
-					
-					
-				</div>
-			</div>
-		</div>
+		{{/each}}
+		
+		
 	</section>
 	<!-- end product Area -->
 	

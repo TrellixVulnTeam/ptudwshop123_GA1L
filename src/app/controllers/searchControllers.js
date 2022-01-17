@@ -44,8 +44,20 @@ class SearchController{
 
                     }
                     page_items.push(item)
+                } 
+                if(req.session.customer)
+                {
+                    const info="Your Information"
+                    const logout="Logout"
+                    const change="Change Password"
+                    res.render('search',{info,logout,products,tongsoPage,page_items,change})
                 }
-                res.render('search',{products,tongsoPage,page_items})
+                else
+                {
+                    const login="Login"
+                    res.render('search',{products,tongsoPage,page_items,login})
+                }
+                
             })
         }
 

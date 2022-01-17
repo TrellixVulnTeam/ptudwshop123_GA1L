@@ -6,7 +6,7 @@
                     <h1>Shopping Cart</h1>
                     <nav class="d-flex align-items-center">
                         <a href="/home">Home<span class="lnr lnr-arrow-right"></span></a>
-                        <a href="/product?page=1&cate=all&nsx=all">Cart</a>
+                        <a href="/cart">Cart</a>
                     </nav>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                                 <td>
                                     <div class="media">
                                         <div class="d-flex">
-                                            <img src={{this._img}} alt="">
+                                            <img width="250" height="250" src={{this._img}} alt="">
                                         </div>
                                         <div class="media-body">
                                             <p>{{this._name}}</p>
@@ -42,7 +42,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>{{this._price}}</h5>
+                                    <h5>${{this._price}}</h5>
                                 </td>
                                 <td>
                                     <div class="product_count">

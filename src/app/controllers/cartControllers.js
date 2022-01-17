@@ -10,23 +10,34 @@ class CartController{
     
     
 
-  //[GET]/singleproduct/:slug
+  
     index(req,res,next){
         {
             var data=[]
             data=req.session.data
-            const login=true
+            
             var path
-            var message
-            if(login)
+           
+            if(req.session.customer)
             {
-                path="#"
+                path="/checkout"
                
             }
             else{
                 path="/login"
             }
-            res.render('cart',{data,path,message})
+            if(req.session.customer)
+            {
+                const info="Your Information"
+                const logout="Logout"
+                const change="Change Password"
+                res.render('cart',{data,path,info,logout,change})
+            }
+            else{
+                const login="Login"
+                res.render('cart',{data,path,login})
+            }
+            
            
             
 
@@ -34,8 +45,10 @@ class CartController{
 
 
 
+
         
     }
+    
 }
     
    

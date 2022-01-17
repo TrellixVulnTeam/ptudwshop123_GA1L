@@ -1,6 +1,6 @@
 const { error } = require('npmlog')
 const Product=require('../models/Product')
-var PAGE_SIZE=1
+var PAGE_SIZE=9
 
 
 class ProductController{
@@ -44,7 +44,21 @@ class ProductController{
                         }
                         page_items.push(item)
                     }
-                    res.render('category',{products,tongsoPage,page_items,_cate,_nsx})
+                    if(req.session.customer)
+                    {
+                        const info="Your Information"
+                        const logout="Logout"
+                        const change="Change Password"
+                        res.render('category',{info,logout,products,tongsoPage,page_items,_cate,_nsx,change})
+                    }
+                    else
+                    {
+                        const login="Login"
+                        res.render('category',{products,tongsoPage,page_items,_cate,_nsx,login})
+                    }
+            
+                    
+                    
                    
                     
                 })
@@ -79,8 +93,20 @@ class ProductController{
                             n:_nsx
                         }
                         page_items.push(item)
+                    } 
+                    if(req.session.customer)
+                    {
+                        const info="Your Information"
+                        const logout="Logout"
+                        const change="Change Password"
+                        res.render('category',{info,logout,products,tongsoPage,page_items,_cate,_nsx,change})
                     }
-                    res.render('category',{products,tongsoPage,page_items,_cate,_nsx})
+                    else
+                    {
+                        const login="Login"
+                        res.render('category',{products,tongsoPage,page_items,_cate,_nsx,login})
+                    }
+                    
                    
                     
                 })
@@ -115,8 +141,20 @@ class ProductController{
                             n:_nsx
                         }
                         page_items.push(item)
+                    } 
+                    if(req.session.customer)
+                    {
+                        const info="Your Information"
+                        const logout="Logout"
+                        const change="Change Password"
+                        res.render('category',{info,logout,products,tongsoPage,page_items,_cate,_nsx,change})
                     }
-                    res.render('category',{products,tongsoPage,page_items,_cate,_nsx})
+                    else
+                    {
+                        const login="Login"
+                        res.render('category',{products,tongsoPage,page_items,_cate,_nsx,login})
+                    }
+                    
                    
                     
                 })
@@ -151,9 +189,21 @@ class ProductController{
                             n:_nsx
                         }
                         page_items.push(item)
+                    } 
+                    if(req.session.customer)
+                    {
+                        const info="Your Information"
+                        const logout="Logout"
+                        const change="Change Password"
+                        res.render('category',{info,logout,products,tongsoPage,page_items,_cate,_nsx,change})
+                    }
+                    else
+                    {
+                        const login="Login"
+                        res.render('category',{products,tongsoPage,page_items,_cate,_nsx,login})
                     }
 
-                    res.render('category',{products,tongsoPage,page_items,_cate,_nsx})
+                    
                    
                     
                 })
@@ -163,9 +213,7 @@ class ProductController{
 
         }
         else{
-            Product.find({})
-            .then(products=>res.json(""))
-            .catch(next)
+            res.redirect('/product?page=1&cate=all&nsx=all')
         }
 
 

@@ -41,7 +41,18 @@ class HomeController{
                 result.push(item)
                 if(i==procedure.length-1)
                 {
-                  res.render('home',{result})
+                  if(req.session.customer)
+                  {
+                      const info="Your Information"
+                      const logout="Logout"
+                      const change="Change Password"
+                      res.render('home',{result,info,logout,change})
+                  }
+                  else{
+                    const login="Login"
+                    res.render('home',{result,login})
+                  }
+                  
                 }
 
               })

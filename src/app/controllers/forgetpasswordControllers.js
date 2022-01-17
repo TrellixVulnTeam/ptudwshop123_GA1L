@@ -1,13 +1,13 @@
 
 const Customer=require('../models/Customer')
 const nodemailer = require('nodemailer')
-const{mongooseToObject, check}=require('../../util/mongoose')
+const{mongooseToObject, check, forgetPasswordCheck, getObjectForgetPassword}=require('../../util/mongoose')
 
 
 
 
 
-class RegistrationController{
+class ForgetPasswordController{
     
     
 
@@ -19,27 +19,29 @@ class RegistrationController{
             const info="Your information"
             const logout="Logout"
             const change="Change Password"
-            res.render('registration',{info,logout,change})
+            res.render('forgetpassword',{info,logout,change})
         }
         else
         {
             const login="Login"
-            res.render('registration',{login})
+            res.render('forgetpassword',{login})
         }
         
 
 
 
     }
-    storeadd(req,res,next)
+    forget(req,res,next)
     {
         Customer.find({})
         .limit()
         .skip()
         .lean()
         .then(datas=>{
-            if(check(datas,req.body._username,req.body._email))
+            if(forgetPasswordCheck(datas,req.body._username))
             {
+                var Object=getObjectForgetPassword(datas,req.body._username);
+                console.log(Object)
                 var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
                 var string_length = 6;
                 var randomstring = '';
@@ -58,52 +60,47 @@ class RegistrationController{
         
                 let mailOptions={
                     from:'ptudwshop20212022@gmail.com',
-                    to:req.body._email,
+                    to:Object._email,
                     subject:'PTUDWShop',
                     text:'Your password is '+ randomstring
                 }
                 transporter.sendMail(mailOptions,function(err,data){
                     if(err){
                         console.log('error occurs:',err)
-                        message="Your email is invalid"
+                        message="Email is invalid"
                         if(req.session.customer)
                         {
                             const info="Your information"
                             const logout="Logout"
                             const change="Change Password"
-                            res.render('registration',{info,logout,change,message})
+                            res.render('forgetpassword',{info,logout,change,message})
                         }
                         else
                         {
                             const login="Login"
-                            res.render('registration',{login,message})
+                            res.render('forgetpassword',{login,message})
                         }
-
+                        
                         
         
                     }
                     else{
                         console.log('email sent')
-                        const formData=req.body
-                        formData._address=''
-                        formData._password=randomstring
-                        formData._avatar='https://scr.vn/wp-content/uploads/2020/07/avt-cute.jpg.webp'
-                        formData._lock=false
-                        const customer=new Customer(formData)
-                        customer.save()
+                        
+                        Customer.findByIdAndUpdate(Object._id,{_password:randomstring})
                         .then(()=>{
-                            message="Thank you.Your account has been successfully created.Please check out your email to take the password"
+                            message="We have sent you a message in your email "+Object._email+" with a random password.Please Sign in your email and take it" 
                             if(req.session.customer)
                             {
                                 const info="Your information"
                                 const logout="Logout"
                                 const change="Change Password"
-                                res.render('registration',{info,logout,change,message})
+                                res.render('forgetpassword',{info,logout,change,message})
                             }
                             else
                             {
                                 const login="Login"
-                                res.render('registration',{login,message})
+                                res.render('forgetpassword',{login,message})
                             }
                             
                         })
@@ -117,18 +114,18 @@ class RegistrationController{
 
             }
             else{
-                message="The username or email has already been taken"
+                message="The Username is invalid"
                 if(req.session.customer)
                 {
                     const info="Your information"
                     const logout="Logout"
                     const change="Change Password"
-                    res.render('registration',{info,logout,change,message})
+                    res.render('forgetpassword',{info,logout,change,message})
                 }
                 else
                 {
                     const login="Login"
-                    res.render('registration',{login,message})
+                    res.render('forgetpassword',{login,message})
                 }
                 
             }
@@ -145,4 +142,4 @@ class RegistrationController{
    
     
 
-module.exports= new RegistrationController;
+module.exports= new ForgetPasswordController;

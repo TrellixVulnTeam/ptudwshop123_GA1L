@@ -5,7 +5,7 @@ const loginController=require('../app/controllers/loginControllers')
 
 
 router.get('/',loginController.index)
-
+router.post('/',loginController.check)
 
 
 

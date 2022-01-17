@@ -119,6 +119,32 @@ module.exports={
         return true
 
     },
+    forgetPasswordCheck:function(datas,username)
+    {
+        for(let i=0;i<datas.length;i++)
+        {
+        
+
+            if(datas[i]._username==username)
+            {
+                return true
+            }
+
+        }
+        return false
+
+    },
+    getObjectForgetPassword:function(datas,username)
+
+    {
+        for(let i=0;i<datas.length;i++)
+        {
+            if(datas[i]._username==username)
+            {
+                return datas[i]
+            }
+        }
+    }
     
     
 }

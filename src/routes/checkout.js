@@ -5,6 +5,7 @@ const checkoutController=require('../app/controllers/checkoutControllers')
 
 
 router.get('/',checkoutController.index)
+router.post('/',checkoutController.store)
 
 
 

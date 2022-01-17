@@ -5,23 +5,27 @@ const{mongooseToObject}=require('../../util/mongoose')
 
 
 
-class ContactController{
+class LogOutController{
     
     
 
-  //[GET]/singleproduct/:slug
+ 
     index(req,res,next){
         {
-            res.render('contact')
+
+            req.session.destroy()
+
+            res.redirect('/login')
+            
         }
 
 
 
     }
 
-}
+    }
     
    
     
 
-module.exports= new ContactController;
+module.exports= new LogOutController;

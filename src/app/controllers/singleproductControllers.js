@@ -21,7 +21,7 @@ class SingleProductController{
             .then((data) =>{
                 
                 Product.find({_idcate:data._idcate})
-                    .skip()
+                    .skip(0)
                     .limit(8)
                     
                     .lean()
@@ -34,7 +34,7 @@ class SingleProductController{
 
                             var page =req.query.page
                             page=parseInt(page)
-                            if(page<1)
+                            if(page<1||!page)
                                 page=1
             
                             var skipAmount=(page-1)*PAGE_SIZE
@@ -59,7 +59,20 @@ class SingleProductController{
                                          }
                                         page_items.push(item)
                                     }
-                                    res.render('singleproduct/singleproduct',{comments,tongsoPage,page_items,productss:relatedProduct(productss,data._nameproduct),products:relatedProduct(products,data._nameproduct),data:mongooseToObject (data)})
+                                    if(req.session.customer)
+                                    {
+                                        const info="Your Information"
+                                        const logout="Logout"
+                                        const change="Change Password"
+                                        res.render('singleproduct/singleproduct',{change,info,logout,comments,tongsoPage,page_items,productss:relatedProduct(productss,data._nameproduct),products:relatedProduct(products,data._nameproduct),data:mongooseToObject (data)})
+                                    }
+                                    else
+                                    {
+                                        const login="Login"
+                                        res.render('singleproduct/singleproduct',{login,comments,tongsoPage,page_items,productss:relatedProduct(productss,data._nameproduct),products:relatedProduct(products,data._nameproduct),data:mongooseToObject (data)})
+                                    }
+                                    
+                                   
                    
                     
                                 })

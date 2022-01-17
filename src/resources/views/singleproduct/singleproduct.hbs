@@ -6,7 +6,7 @@
 					<nav class="d-flex align-items-center">
 						<a href="/home">Home<span class="lnr lnr-arrow-right"></span></a>
 						<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
-						<a href="/home">product-details</a>
+						<a href="#">product-details</a>
 					</nav>
 				</div>
 			</div>
@@ -34,20 +34,13 @@
 				<div class="col-lg-5 offset-lg-1">
 					<div  class="s_product_text">
 						<h3>{{data._nameproduct}}</h3>
-						<h2>{{data._price}}</h2>
+						<h2>${{data._price}}</h2>
 						<ul class="list">
 							<li><a class="active" href="#"><span>Category</span> : {{data._idcate}}</a></li>
 							<li><a href="#"><span>Availibility</span> : {{data._amount}}</a></li>
 						</ul>
 						<p>{{data._detail}}</p>
-						<div class="product_count">
-							<label for="qty">Quantity:</label>
-							<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-							 class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-							 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-						</div>
+						
 						<div class="card_area d-flex align-items-center">
 							<a class="primary-btn" href="/singleproduct/{{data._slug}}/add">Add to Cart</a>
 							
@@ -158,12 +151,12 @@
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<a href="/singleproduct/{{this._slug}}">
-								<img class="img-fluid" src="{{this._img}}">
+								<img  width="250" height="250" src="{{this._img}}">
 							</a>
 							<div class="product-details">
-								<h6>{{this._detail}}</h6>
+								<h6>{{this._nameproduct}}</h6>
 								<div class="price">
-									<h6>{{this._price}}</h6>
+									<h6>${{this._price}}</h6>
 									
 								</div>
 								
@@ -192,7 +185,7 @@
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
 							<a href="/singleproduct/{{this._slug}}">
-								<img class="img-fluid" src="{{this._img}}">
+								<img width="250" height="250" src="{{this._img}}">
 							</a>
 							
 							<div class="product-details">
